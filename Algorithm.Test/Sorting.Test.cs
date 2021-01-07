@@ -26,11 +26,44 @@ namespace Algorithm.Test
 
         [Theory]
         [MemberData(nameof(sortingTestASC))]
-        public void Merge_Sort(int[] arr,int[] expected)
+        public void Merge_Sort_Recursive(int[] arr,int[] expected)
         {
             MergeSort mergeSort = new MergeSort(output);
             mergeSort.Recursive_Sort(arr);
             Assert.Equal(expected, arr);
+        }
+
+        [Theory]
+        [MemberData(nameof(sortingTestASC))]
+        public void Merge_Sort_Iterative(int[] arr, int[] expected)
+        {
+            MergeSort mergeSort = new MergeSort(output);
+
+            mergeSort.Iterative_Sort(arr);
+            Assert.Equal(expected, arr);
+
+        }
+
+        [Theory]
+        [MemberData(nameof(sortingTestASC))]
+        public void Quick_Sort_Iterative(int[] arr, int[] expected)
+        {
+            QuickSort quickSort = new QuickSort(output);
+
+            quickSort.Iterative_Sort(arr);
+            Assert.Equal(expected, arr);
+
+        }
+
+        [Theory]
+        [MemberData(nameof(sortingTestASC))]
+        public void Quick_Sort_Recursive(int[] arr, int[] expected)
+        {
+            QuickSort quickSort = new QuickSort(output);
+
+            quickSort.Recursive_Sort(arr);
+            Assert.Equal(expected, arr);
+
         }
 
         [Theory]
@@ -85,6 +118,11 @@ namespace Algorithm.Test
                     new object[] { new int[] { 64, 25, 12, 22, 11 }, new int[] { 11, 12, 22, 25, 64 } },
                     new object[] {new int[] { 5, 1, 4, 2, 8 }, new int[] { 1, 2, 4, 5, 8 }},
                     new object[] { new int[] { 1, 3, 2, 4, 5 }, new int[] { 1, 2, 3, 4, 5 }},
+                    new object[] { new int[] { 1, 6, 2, 4, 5,3 }, new int[] { 1, 2, 3, 4, 5,6 }},
+                    new object[] { new int[] { 11, 6, 22, 4, 5,3,7,3 }, new int[] { 3, 3, 4, 5, 6,7,11,22 }},
+                    new object[] { new int[] { 11, 6, 22 }, new int[] { 6,11,22 }},
+                    new object[] { new int[] { 11, 6 }, new int[] { 6,11 }},
+
             };
      
     }

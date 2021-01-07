@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Xunit;
 
 namespace DataStructures.Test
@@ -118,8 +119,62 @@ namespace DataStructures.Test
         }
 
 
+        [Theory]
+        [InlineData("SIAPA","CAPGASIGPPSSAAAIGHK",2)]
+        [InlineData("SIAP", "CAPGASIGPPSSAAAIGHK", 2)]
+        public void countHowManyWordInGivenString(string str, string strListWord,int expected)
+        {
+            char[] arr = strListWord.ToCharArray();
+            char[] word = str.ToCharArray();
+            int[] count = new int[word.Length];
+            for (int j = 0; j < arr.Length; j++)
+            {
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if(arr[j] == word[i])
+                    {
+                        count[i]++;
+                    }
+                }
+            }
 
+            
+            Assert.Equal(expected, count.Min());
+        }
 
+        [Theory]
+        [InlineData( "CAPGASIGPPSSAAAIGHKAS", 2)]
+        public void HowManyWordSiapaInGivenString(string strListWord, int expected)
+        {
+            int result = 0;
+            char[] arr = strListWord.ToCharArray();
+            int s = 0;
+            int i = 0;
+            int a = 0;
+            int p = 0;
+            for (int j = 0; j < arr.Length; j++)
+            {
+                switch (arr[j])
+                {
+                    case 'S':
+                        s++;
+                        break;
+                    case 'I':
+                        i++;
+                        break;
+                    case 'A':
+                        a++;
+                        break;
+                    case 'P':
+                        p++;
+                        break;
+                }
+            }
+            a = a / 2;
+            result = Math.Min(s, i);
+            result = Math.Min(result, Math.Min(a, p));
+            Assert.Equal(expected, result);
+        }
 
         [Fact]
         public void ReverseTest_Array()
